@@ -26,8 +26,8 @@ Now you ready to go. Except that you should _**sync your project**_ first.
 Using this library consists of creating an object "listener", and passing it to the addOnItemTouchListener() Recyclerview method.
 ```
 // creating an instance of the object by passing the context, respective recyclerview, and an implementation of the callbacks
-SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTouchListener(this
-                , mRecyclerView, new SimpleOnItemTouchListener() {
+SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTouchListener(this,
+                mRecyclerView, new SimpleOnItemTouchListener() {
                 
             @Override
             public void onItemClick(View view, int i) {
@@ -49,7 +49,7 @@ SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTou
             
         }));
   
-  // adding the listener to its recyclerview
+  // adding the listener to its corresponding recyclerview
   mRecyclerView.addOnItemTouchListener(listener);
 ```
 ## How to contribute
