@@ -10,7 +10,7 @@ Lets start by adding a corresponding repository in your _root_ `build.gradle` fi
 	allprojects {
 		repositories {
 			...
-			**maven { url 'https://jitpack.io' }**
+			maven { url 'https://jitpack.io' }
 		}
 	}
  ```
@@ -20,9 +20,8 @@ The next task is to add the dependecy to your _app_ `build.gradle` file.
           ...
 	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.0'
 	}
-Now you ready to go. Except that you should _**sync your project**_ first.
-
 ```
+Now you ready to go. Except that you should _**sync your project**_ first.
 ## How to use
 Using this library consists of creating an object "listener", and passing it to the addOnItemTouchListener() Recyclerview method.
 ```
