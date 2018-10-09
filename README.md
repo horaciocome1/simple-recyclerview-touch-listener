@@ -1,6 +1,6 @@
 # Simple RecyclerView Touch Listener
 ## Getting Started
-This is a library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens whe such events occurs.
+This is a library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens when such events occurs.
 
 ## Pre-requesites
 To be able of testing and implementig this library, the developer should have a working recyclerview list with some data on it.
