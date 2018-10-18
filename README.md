@@ -55,7 +55,7 @@ SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTou
   mRecyclerView.addOnItemTouchListener(listener);
 ```
 
-## Licences
+## Licenses
    Copyright [2018] [Horácio Flávio Comé Júnior]
 
    Licensed under the Apache License, Version 2.0 (the "License");
