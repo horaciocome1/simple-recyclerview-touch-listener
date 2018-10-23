@@ -1,4 +1,4 @@
-# Simple RecyclerView Touch Listener
+# Simple RecyclerView Touch Listener [![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener)
 ## Getting Started
 This is a library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens when such events occurs.
 
