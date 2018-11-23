@@ -1,4 +1,4 @@
-package com.wordpress.beendora.simplerecyclerviewtouchlistener;
+package io.github.horaciocome1.xsimplerecyclerviewtouchlistener;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -20,8 +20,7 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-    
-        assertEquals("com.wordpress.beendora.simplerecyclerviewtouchlistener.test",
-                appContext.getPackageName());
+
+        assertEquals("io.github.horaciocome1.xsimplerecyclerviewtouchlistener.test", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.wordpress.beendora.simplerecyclerviewtouchlistener;
+package io.github.horaciocome1.xsimplerecyclerviewtouchlistener;
 
 import org.junit.Test;
 
