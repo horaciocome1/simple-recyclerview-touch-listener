@@ -60,19 +60,19 @@ public class SimpleRecyclerViewOnItemTouchListener implements RecyclerView.OnIte
 
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
 
         void onClick(View view, int position);
 
     }
 
-    interface OnItemDoubleClickListener {
+    public interface OnItemDoubleClickListener {
 
         void onDoubleClick(View view, int position);
 
     }
 
-    interface OnItemLongPressListener {
+    public interface OnItemLongPressListener {
 
         void onLongPress(View view, int position);
 
