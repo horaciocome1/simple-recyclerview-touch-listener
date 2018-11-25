@@ -1,12 +1,13 @@
 # Simple RecyclerView Touch Listener [![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener)
 ## Getting Started
 This is a library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens when such events occurs.
+Compatible with androidx.
 
 ## Pre-requesites
 To be able of testing and implementig this library, the developer should have a working recyclerview list with some data on it.
 
 ## Adding to your project
-Lets start by adding a corresponding repository in your _root_ `build.gradle` file. (prefer at the end of all other)
+Lets start by adding a corresponding repository in your _root_ `build.gradle` file. (prefer below all other)
 ```gradle
 	allprojects {
 		repositories {
@@ -19,41 +20,58 @@ The next task is to add the dependecy to your _app_ `build.gradle` file.
 ```gradle
 	dependencies {
           ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.0'
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.2'
 	}
 ```
 Now you ready to go. Except that you should _**sync your project**_ first.
 
+### Do not use with app compart or support design
+As mention on IO18, android support libraries will not be updated anymore, thats the main reason ive moved to androidx and new material design libraries. That's why if you have any appcompat or design support library as dependency the build will fail. Because the androidx on these app will conflict with android support on your app.
+Dont panic, you can use version 0.1.0 with the old support libraries. But dont espect that to be as much fiendly as these new build.
+```gradle
+	dependencies {
+          ...
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.0'
+	}
+```
+
 ## How to use
-Using this library consists of creating an object "listener", and passing it to the addOnItemTouchListener() Recyclerview method.
+Intanciate a class `SimpleRecyclerViewOnItemTouchListener` by using its own builder.
 ```java
-// creating an instance of the object by passing the context, respective recyclerview, and an implementation of the callbacks
-SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTouchListener(this,
-                mRecyclerView, new SimpleOnItemTouchListener() {
-                
-            @Override
-            public void onItemClick(View view, int i) {
-                // what to do when it is just a simple tap up on the list item
-                Toast.makeText(view.getContext(), "Normal click: " + i, Toast.LENGTH_SHORT).show();
-            }
-    
-            @Override
-            public void onItemDoubleClick(View view, int i) {
-                // what to do when it is about two quickly performed taps on the list item
-                Toast.makeText(view.getContext(), "Double click: " + i, Toast.LENGTH_SHORT).show();
-            }
-    
-            @Override
-            public void onItemLongPress(View view, int i) {
-                // what to do when the user press and hold the list item
-                Toast.makeText(view.getContext(), "Long press: " + i, Toast.LENGTH_SHORT).show();
-            }
-            
-        }));
+SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerViewOnItemTouchListener.Builder()
+                .setOnItemLongPressListener(new SimpleOnItemTouch.OnItemLongPressListener() {
+                    @Override
+                    public void onLongPress(View view, int position) {
+                        // handle long press event
+                    }
+                })
+                .build(this, mRecyclerView);
   
   // adding the listener to its corresponding recyclerview
-  mRecyclerView.addOnItemTouchListener(listener);
+  mRecyclerView.addOnItemTouchListener(onItemTouchListener);
 ```
+Its not mandatory to implement all at once. Pheraphs you only need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
+```java
+SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerViewOnItemTouchListener.Builder()
+                .setOnItemLongPressListener(new SimpleOnItemTouch.OnItemLongPressListener() {
+                    @Override
+                    public void onLongPress(View view, int position) {
+                        // handle long press event
+                    }
+                })
+                .build(this, mRecyclerView);
+```
+
+### Troubleshooting
+Notice that it is crucial to call `build( ... )` so that the line can compile.
+All listeners not specified or implemented will not be called. In above exemple, click and double click events are totally not handled at all. And that's why it makes no sense only calling `build( ... )`.
+```java
+SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerViewOnItemTouchListener.Builder()
+                .build(this, mRecyclerView);
+```
+
+### Synchronisation failed!
+Please reference to the part on the start where i talked about support libraries
 
 ## Licenses
    Copyright [2018] [Horácio Flávio Comé Júnior]
@@ -72,4 +90,4 @@ SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTou
 
 ## How to contribute
 I am open to suggestions of any kind.
-Please be expressive!
+Please be expressive, so others so we'all will be able to understand each other!

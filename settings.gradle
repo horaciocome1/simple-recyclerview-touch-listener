@@ -1,1 +1,1 @@
-include ':app', ':simplerecyclerviewtouchlistener', ':xsimplerecyclerviewtouchlistener'
+include ':app', ':simplerecyclerviewtouchlistener'

@@ -1,68 +1,25 @@
 package com.wordpress.beendora.simplerecyclerviewtouchlistener;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class SimpleRecyclerViewOnItemTouchListener implements RecyclerView.OnItemTouchListener {
     
     private GestureDetector mGestureDetector;
-    
-    public SimpleRecyclerViewOnItemTouchListener(Context mContext, final RecyclerView mRecyclerView,
-            final SimpleOnItemTouchListener mSimpleOnItemTouchListener) {
-        this.mGestureDetector = new GestureDetector(mContext, new GestureDetector
-                .SimpleOnGestureListener() {
-    
-            @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-//                called when user quickly hits the screen, "maybe" on a list item
-//                the goal of this code is to identify whether it was on any recyclerview item or
-//                not
-//                then to pass this item (view) and its position to the respactive method
-//                implementation
-    
-                View view = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (!(view == null) && !(mSimpleOnItemTouchListener == null))
-                    mSimpleOnItemTouchListener.onItemClick(view, mRecyclerView
-                            .getChildAdapterPosition(view));
-                return true;
-            }
-    
-            @Override
-            public void onLongPress(MotionEvent e) {
-//                called when user hits and hold the screen, "maybe" on a list item
-//                the goal of this code is to identify whether it was on any recyclerview item or
-//                not
-//                then to pass this item (view) and its position to the respactive method
-//                implementation
-    
-                View view = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (!(view == null) && !(mSimpleOnItemTouchListener == null))
-                    mSimpleOnItemTouchListener.onItemLongPress(view, mRecyclerView
-                            .getChildAdapterPosition(view));
-            }
-    
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-//                called when user quickly hits the screen twice, maybe on a list item
-//                the goal of this code is to identify whether it was on any recyclerview item or
-//                not
-//                then to pass this item (view) and its position to the respactive method
-//                implementation
-    
-                View view = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (!(view == null) && !(mSimpleOnItemTouchListener == null))
-                    mSimpleOnItemTouchListener.onItemDoubleClick(view, mRecyclerView
-                            .getChildAdapterPosition(view));
-                return true;
-            }
-            
-        });
+
+    private SimpleRecyclerViewOnItemTouchListener(Context context, Builder builder, RecyclerView recyclerView) {
+        MyGestureListener gestureListener = new MyGestureListener(recyclerView,
+                builder.mOnItemClickListener,
+                builder.mOnItemDoubleClickListener,
+                builder.mOnItemLongPressListener);
+        mGestureDetector = new GestureDetector(context, gestureListener);
     }
-    
+
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView,
             @NonNull MotionEvent motionEvent) {
@@ -75,4 +32,50 @@ public class SimpleRecyclerViewOnItemTouchListener implements RecyclerView.OnIte
     
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean b) {}
+
+    public static class Builder {
+
+        private SimpleRecyclerViewOnItemTouchListener.OnItemClickListener mOnItemClickListener;
+        private SimpleRecyclerViewOnItemTouchListener.OnItemDoubleClickListener mOnItemDoubleClickListener;
+        private SimpleRecyclerViewOnItemTouchListener.OnItemLongPressListener mOnItemLongPressListener;
+
+        public Builder setOnItemClickListener(SimpleRecyclerViewOnItemTouchListener.OnItemClickListener mOnItemClickListener) {
+            this.mOnItemClickListener = mOnItemClickListener;
+            return this;
+        }
+
+        public Builder setOnItemDoubleClickListener(SimpleRecyclerViewOnItemTouchListener.OnItemDoubleClickListener mOnItemDoubleClickListener) {
+            this.mOnItemDoubleClickListener = mOnItemDoubleClickListener;
+            return this;
+        }
+
+        public Builder setOnItemLongPressListener(SimpleRecyclerViewOnItemTouchListener.OnItemLongPressListener mOnItemLongPressListener) {
+            this.mOnItemLongPressListener = mOnItemLongPressListener;
+            return this;
+        }
+
+        public SimpleRecyclerViewOnItemTouchListener build(Context context, RecyclerView recyclerView) {
+            return new SimpleRecyclerViewOnItemTouchListener(context, this, recyclerView);
+        }
+
+    }
+
+    interface OnItemClickListener {
+
+        void onClick(View view, int position);
+
+    }
+
+    interface OnItemDoubleClickListener {
+
+        void onDoubleClick(View view, int position);
+
+    }
+
+    interface OnItemLongPressListener {
+
+        void onLongPress(View view, int position);
+
+    }
+
 }
