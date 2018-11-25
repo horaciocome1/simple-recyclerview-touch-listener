@@ -39,6 +39,18 @@ Dont panic, you can use version 0.1.0 with the old support libraries. But dont e
 Intanciate a class `SimpleRecyclerViewOnItemTouchListener` by using its own builder.
 ```java
 SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerViewOnItemTouchListener.Builder()
+                .setOnItemClickListener(new SimpleRecyclerViewOnItemTouchListener.OnItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        //  handle click event
+                    }
+                })
+                .setOnItemDoubleClickListener(new SimpleRecyclerViewOnItemTouchListener.OnItemDoubleClickListener() {
+                    @Override
+                    public void onDoubleClick(View view, int position) {
+                        // handle double click events
+                    }
+                })
                 .setOnItemLongPressListener(new SimpleOnItemTouch.OnItemLongPressListener() {
                     @Override
                     public void onLongPress(View view, int position) {
