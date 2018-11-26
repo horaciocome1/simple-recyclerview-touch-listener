@@ -35,9 +35,9 @@ public class SimpleRecyclerViewOnItemTouchListener implements RecyclerView.OnIte
 
     public static class Builder {
 
-        private SimpleRecyclerViewOnItemTouchListener.OnItemClickListener mOnItemClickListener;
-        private SimpleRecyclerViewOnItemTouchListener.OnItemDoubleClickListener mOnItemDoubleClickListener;
-        private SimpleRecyclerViewOnItemTouchListener.OnItemLongPressListener mOnItemLongPressListener;
+        private SimpleRecyclerViewOnItemTouchListener.OnItemClickListener mOnItemClickListener = null;
+        private SimpleRecyclerViewOnItemTouchListener.OnItemDoubleClickListener mOnItemDoubleClickListener = null;
+        private SimpleRecyclerViewOnItemTouchListener.OnItemLongPressListener mOnItemLongPressListener = null;
 
         public Builder setOnItemClickListener(SimpleRecyclerViewOnItemTouchListener.OnItemClickListener mOnItemClickListener) {
             this.mOnItemClickListener = mOnItemClickListener;

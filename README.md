@@ -34,6 +34,7 @@ Dont panic, you can use version 0.1.0 with the old support libraries. But dont e
 	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.0'
 	}
 ```
+Do not try to implement as follow. The object `SimpleRecyclerViewOnItemTouchListener` is still the same. Just instanciate the class passing necessary arguments. Makeuseof code completion to help you. I am wondering if it is necessary to do a separate lib for suppor appcompat. Email me if you thinking on that.
 
 ## How to use
 Intanciate a class `SimpleRecyclerViewOnItemTouchListener` by using its own builder.
@@ -75,15 +76,15 @@ SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerVi
 ```
 
 ### Troubleshooting
-Notice that it is crucial to call `build( ... )` so that the line can compile.
+Notice that it is crucial to call `build( ... )` so that the listener it self could be initialized.
 All listeners not specified or implemented will not be called. In above exemple, click and double click events are totally not handled at all. And that's why it makes no sense only calling `build( ... )`.
 ```java
 SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerViewOnItemTouchListener.Builder()
                 .build(this, mRecyclerView);
 ```
 
-### Synchronisation failed!
-Please reference to the part on the start where i talked about support libraries
+### "Build or sinchronization failed!"
+Please reference to the part on the start where i talked about support libraries.
 
 ## Licenses
    Copyright [2018] [Horácio Flávio Comé Júnior]

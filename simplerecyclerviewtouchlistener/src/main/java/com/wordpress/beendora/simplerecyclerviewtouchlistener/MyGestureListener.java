@@ -37,7 +37,7 @@ class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
     public void onLongPress(MotionEvent e) {
         if (!(mRecyclerView == null)) {
             View view = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
-            if (!(view == null) && !(mOnItemClickListener == null))
+            if (!(view == null) && !(mOnItemLongPressListener == null))
                 mOnItemLongPressListener.onLongPress(view, mRecyclerView.getChildAdapterPosition(view));
         }
     }
@@ -46,7 +46,7 @@ class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
     public boolean onDoubleTap(MotionEvent e) {
         if (!(mRecyclerView == null)) {
             View view = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
-            if (!(view == null) && !(mOnItemClickListener == null))
+            if (!(view == null) && !(mOnItemDoubleClickListener == null))
                 mOnItemDoubleClickListener.onDoubleClick(view, mRecyclerView.getChildAdapterPosition(view));
         }
         return true;
