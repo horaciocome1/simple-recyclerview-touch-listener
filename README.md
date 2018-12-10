@@ -22,7 +22,7 @@ The next task is to add the dependecy to your _app_ `build.gradle` file.
 ```gradle
 	dependencies {
           ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.2'
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.4'
 	}
 ```
 Now you ready to go. Except that you should _**sync your project**_ first.
@@ -97,7 +97,7 @@ SimpleRecyclerViewOnItemTouchListener onItemTouchListener = new SimpleRecyclerVi
 Please reference to the part on the start where i talked about support libraries.
 
 ## Licenses
-   Copyright [2018] [Horácio Flávio Comé Júnior]
+   Copyright 2018 Horácio Flávio Comé Júnior
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -114,3 +114,7 @@ Please reference to the part on the start where i talked about support libraries
 ## How to contribute
 I am open to suggestions of any kind.
 Please be expressive, so others so we'all will be able to understand each other!
+
+# Simple RecyclerView Utils
+This is part of a serie of libraries that pretend to make recyclerview usage more easy.
+For a touch listener please see [Simple RecyclerView Adapter](https://github.com/horaciocome1/simple-recyclerview-adapter)
