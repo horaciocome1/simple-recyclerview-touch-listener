@@ -117,4 +117,4 @@ Please be expressive, so others so we'all will be able to understand each other!
 
 # Simple RecyclerView Utils
 This is part of a serie of libraries that pretend to make recyclerview usage more easy.
-For a touch listener please see [Simple RecyclerView Adapter](https://github.com/horaciocome1/simple-recyclerview-adapter)
+For a adapter please see [Simple RecyclerView Adapter](https://github.com/horaciocome1/simple-recyclerview-adapter)
