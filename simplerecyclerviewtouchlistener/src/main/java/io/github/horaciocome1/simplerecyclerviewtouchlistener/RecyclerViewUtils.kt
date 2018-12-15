@@ -18,6 +18,6 @@ package io.github.horaciocome1.simplerecyclerviewtouchlistener
 import androidx.recyclerview.widget.RecyclerView
 
 fun RecyclerView.addSimpleTouchListener(touchListener: SimpleRecyclerViewOnItemTouchListener) {
-    touchListener.recyclerView = this
+    touchListener.setRecyclerView(this)
     this.addOnItemTouchListener(touchListener)
 }

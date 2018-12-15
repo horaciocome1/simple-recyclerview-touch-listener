@@ -20,9 +20,9 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class MyGestureListener(val onClick: (View, Int) -> Unit,
-                        val onDoubleClick: (View, Int) -> Unit,
-                        val onLongPress: (View, Int) -> Unit,
+class MyGestureListener(val onClick: (View, Int) -> Unit = { _:View, _:Int -> },
+                        val onDoubleClick: (View, Int) -> Unit = { _:View, _:Int -> },
+                        val onLongPress: (View, Int) -> Unit = { _:View, _:Int -> },
                         private val recyclerView: RecyclerView) : GestureDetector.SimpleOnGestureListener() {
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {

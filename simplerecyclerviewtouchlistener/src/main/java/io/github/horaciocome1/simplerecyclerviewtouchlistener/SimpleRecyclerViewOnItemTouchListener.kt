@@ -15,20 +15,21 @@
 
 package io.github.horaciocome1.simplerecyclerviewtouchlistener
 
+import android.content.Context
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class SimpleRecyclerViewOnItemTouchListener : RecyclerView.OnItemTouchListener {
+class SimpleRecyclerViewOnItemTouchListener(private val context: Context) : RecyclerView.OnItemTouchListener {
 
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
     private var onClick = { _: View, _: Int -> Unit }
     private var onDoubleClick = { _: View, _: Int -> Unit }
     private var onLongPress = { _: View, _: Int -> Unit }
 
     override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-        GestureDetector(recyclerView.context, MyGestureListener(onClick, onDoubleClick, onLongPress, recyclerView))
+        GestureDetector(context, MyGestureListener(onClick, onDoubleClick, onLongPress, recyclerView))
     }
 
     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
@@ -48,6 +49,10 @@ class SimpleRecyclerViewOnItemTouchListener : RecyclerView.OnItemTouchListener {
 
     fun setOnItemLongPressListener(onLongPress: (View, Int) -> Unit) {
         this.onLongPress = onLongPress
+    }
+
+    fun setRecyclerView(recyclerView: RecyclerView) {
+        this.recyclerView = recyclerView
     }
 
 

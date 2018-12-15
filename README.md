@@ -22,7 +22,7 @@ The next task is to add the dependecy to your _app_ `build.gradle` file.
 ```gradle
 	dependencies {
           ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.5'
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.6'
 	}
 ```
 Now you ready to go. Except that you should _**sync your project**_ first.
@@ -41,7 +41,7 @@ Do not try to implement as follow. The object `SimpleRecyclerViewOnItemTouchList
 ## How to use
 I suggest calling custom **addSimpleTouchListener()** recyclerview extension, because its more easy to get the _recyclerview_.
 ```kotlin
-recyclerView.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener().apply {
+recyclerView.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener(context).apply {
     setOnItemClickListener { view, i -> /* handle clicks */ }
     setOnItemDoubleClickListener { view, i -> /* handle double clicks */ }
     setOnItemLongPressListener { view, i -> /* handle long presses */ }
@@ -50,34 +50,64 @@ recyclerView.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener().app
 
 If you want to call default **addOnItemTouchListener()**, you need to specify the recyclerview.
 ```kotlin
-recyclerview.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener().apply {
+recyclerview.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener(context).apply {
     setOnItemClickListener { view, i -> /* handle clicks */ }
     setOnItemDoubleClickListener { view, i -> /* handle double clicks */ }
     setOnItemLongPressListener { view, i -> /* handle long presses */ }
-    this.recyclerview = recyclerview
+    setRecyclerView(recyclerView)
 })
 ```
 
 Its not mandatory to implement all at once. Pheraphs you only need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
 ```kotlin
-this.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener().apply {
-    setOnItemClickListener { view, i -> /* handle clicks */ }
+this.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener(context).apply {
+    setOnItemLongPressListener { view, i -> /* handle clicks */ }
 })
 ```
 
 ### Java
-I'll submit soon.
-```kotlin
-
+```java
+SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTouchListener(context);
+        listener.setRecyclerView(recyclerView);
+        listener.setOnItemClickListener(new Function2<View, Integer, Unit>() {
+            @Override
+            public Unit invoke(View view, Integer integer) {
+                // handle clicks
+                return null;
+            }
+        });
+        listener.setOnItemDoubleClickListener(new Function2<View, Integer, Unit>() {
+            @Override
+            public Unit invoke(View view, Integer integer) {
+                // handle double clicks
+                return null;
+            }
+        });
+        listener.setOnItemLongPressListener(new Function2<View, Integer, Unit>() {
+            @Override
+            public Unit invoke(View view, Integer integer) {
+                // long presses
+                return null;
+            }
+        });
+        recyclerView.addOnItemTouchListener(listener);
 ```
+
+On java you cant use new **addSimpleTouchListener()**, you must use the  default **addOnItemTouchListener()**.
+As of that, you must specify in wich recyclerview it should be implemented by calling `listener.setRecyclerView()`.
 
 ### Troubleshooting
 Naturally, you need to implement those callback or nothing is done.
 ```kotlin
 // this is what you need to a void
-recyclerView.addSimpleTouchListener(SimpleRecyclerViewOnItemTouchListener())
+recyclerView.addSimpleTouchListener(SimpleRecyclerViewOnItemTouchListener(context))
 ```
 
+If you using the default **addOnItemTouchListener()**, please, make sure that you specify which recyclerview to implement listener.
+```kotlin
+// this is what you need to a void
+recyclerView.addSimpleTouchListener(SimpleRecyclerViewOnItemTouchListener(context).apply { setRecyclerView(recyclerView) })
+```
 ### "Build or sinchronization failed!"
 Please reference to the part on the start where i talked about support libraries.
 
