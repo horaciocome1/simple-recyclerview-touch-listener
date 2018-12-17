@@ -39,12 +39,11 @@ Dont panic, you can use version 0.1.0 with the old support libraries. But dont e
 Do not try to implement as follow. The object `SimpleRecyclerViewOnItemTouchListener` is still the same. Just instanciate the class passing necessary arguments. Makeuseof code completion to help you. I am wondering if it is necessary to do a separate lib for suppor appcompat. Email me if you thinking on that.
 
 ## How to use
-I suggest calling custom **addSimpleTouchListener()** recyclerview extension, because its more easy to get the _recyclerview_.
 ```kotlin
 recyclerView.apply () {
-    setOnClick { view, i -> /* handle clicks */ }
-    setOnDoubleClick { view, i -> /* handle double clicks */ }
-    setOnLongPress { view, i -> /* handle long presses */ }
+    setOnClick { view, position -> /* handle clicks */ }
+    setOnDoubleClick { view, position -> /* handle double clicks */ }
+    setOnLongPress { view, position -> /* handle long presses */ }
     addSimpleTouchListener()
 }
 ```
@@ -52,7 +51,7 @@ recyclerView.apply () {
 Its not mandatory to implement all at once. Pheraphs you just need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
 ```kotlin
 recyclerView.apply () {
-    setOnLongPress { view, i -> /* handle long presses */ }
+    setOnLongPress { view, position -> /* handle long presses */ }
     addSimpleTouchListener()
 }
 ```
