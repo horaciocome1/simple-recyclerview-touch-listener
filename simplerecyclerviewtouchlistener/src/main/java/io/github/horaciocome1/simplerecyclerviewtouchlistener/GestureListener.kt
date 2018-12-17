@@ -20,30 +20,32 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class MyGestureListener(val onClick: (View, Int) -> Unit = { _:View, _:Int -> },
-                        val onDoubleClick: (View, Int) -> Unit = { _:View, _:Int -> },
-                        val onLongPress: (View, Int) -> Unit = { _:View, _:Int -> },
-                        private val recyclerView: RecyclerView) : GestureDetector.SimpleOnGestureListener() {
+class GestureListener(
+    private val recyclerView: RecyclerView,
+    private val onClick: (View, Int) -> Unit,
+    private val onDoubleClick: (View, Int) -> Unit,
+    private val onLongPress: (View, Int) -> Unit
+) : GestureDetector.SimpleOnGestureListener() {
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        if (e != null) {
-            val view = recyclerView.findChildViewUnder(e.x, e.y)
+        e?.run {
+            val view = recyclerView.findChildViewUnder(x, y)
             if (view != null) onClick(view, recyclerView.getChildAdapterPosition(view))
         }
         return true
     }
 
     override fun onDoubleTap(e: MotionEvent?): Boolean {
-        if (e != null) {
-            val view = recyclerView.findChildViewUnder(e.x, e.y)
+        e?.run {
+            val view = recyclerView.findChildViewUnder(x, y)
             if (view != null) onDoubleClick(view, recyclerView.getChildAdapterPosition(view))
         }
         return true
     }
 
     override fun onLongPress(e: MotionEvent?) {
-        if (e != null) {
-            val view = recyclerView.findChildViewUnder(e.x, e.y)
+        e?.run {
+            val view = recyclerView.findChildViewUnder(x, y)
             if (view != null) onLongPress(view, recyclerView.getChildAdapterPosition(view))
         }
     }

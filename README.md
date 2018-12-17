@@ -1,5 +1,5 @@
 # Simple RecyclerView Touch Listener 
-[![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener)[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
+[![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 ## Getting Started
 Android library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens when such events occurs.
@@ -22,7 +22,7 @@ The next task is to add the dependecy to your _app_ `build.gradle` file.
 ```gradle
 	dependencies {
           ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.6'
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.7'
 	}
 ```
 Now you ready to go. Except that you should _**sync your project**_ first.
@@ -41,73 +41,56 @@ Do not try to implement as follow. The object `SimpleRecyclerViewOnItemTouchList
 ## How to use
 I suggest calling custom **addSimpleTouchListener()** recyclerview extension, because its more easy to get the _recyclerview_.
 ```kotlin
-recyclerView.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener(context).apply {
-    setOnItemClickListener { view, i -> /* handle clicks */ }
-    setOnItemDoubleClickListener { view, i -> /* handle double clicks */ }
-    setOnItemLongPressListener { view, i -> /* handle long presses */ }
-})
+recyclerView.apply () {
+    setOnClick { view, i -> /* handle clicks */ }
+    setOnDoubleClick { view, i -> /* handle double clicks */ }
+    setOnLongPress { view, i -> /* handle long presses */ }
+    addSimpleTouchListener()
+}
 ```
 
-If you want to call default **addOnItemTouchListener()**, you need to specify the recyclerview.
+Its not mandatory to implement all at once. Pheraphs you just need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
 ```kotlin
-recyclerview.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener(context).apply {
-    setOnItemClickListener { view, i -> /* handle clicks */ }
-    setOnItemDoubleClickListener { view, i -> /* handle double clicks */ }
-    setOnItemLongPressListener { view, i -> /* handle long presses */ }
-    setRecyclerView(recyclerView)
-})
-```
-
-Its not mandatory to implement all at once. Pheraphs you only need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
-```kotlin
-this.addSimpleTouchListener( SimpleRecyclerViewOnItemTouchListener(context).apply {
-    setOnItemLongPressListener { view, i -> /* handle clicks */ }
-})
+recyclerView.apply () {
+    setOnLongPress { view, i -> /* handle long presses */ }
+    addSimpleTouchListener()
+}
 ```
 
 ### Java
 ```java
-SimpleRecyclerViewOnItemTouchListener listener = new SimpleRecyclerViewOnItemTouchListener(context);
-        listener.setRecyclerView(recyclerView);
-        listener.setOnItemClickListener(new Function2<View, Integer, Unit>() {
-            @Override
-            public Unit invoke(View view, Integer integer) {
-                // handle clicks
-                return null;
-            }
-        });
-        listener.setOnItemDoubleClickListener(new Function2<View, Integer, Unit>() {
-            @Override
-            public Unit invoke(View view, Integer integer) {
-                // handle double clicks
-                return null;
-            }
-        });
-        listener.setOnItemLongPressListener(new Function2<View, Integer, Unit>() {
-            @Override
-            public Unit invoke(View view, Integer integer) {
-                // long presses
-                return null;
-            }
-        });
+SimpleOnItemTouchListener listener = new SimpleOnItemTouchListener(
+                recyclerView,
+                new Function2<View, Integer, Unit>() {
+                    @Override
+                    public Unit invoke(View view, Integer integer) {
+                        // handle clicks
+                        return null;
+                    }
+                },
+                new Function2<View, Integer, Unit>() {
+                    @Override
+                    public Unit invoke(View view, Integer integer) {
+                        // handle doouble clicks
+                        return null;
+                    }
+                },
+                new Function2<View, Integer, Unit>() {
+                    @Override
+                    public Unit invoke(View view, Integer integer) {
+                        // handle long presses
+                        return null;
+                    }
+                });
         recyclerView.addOnItemTouchListener(listener);
 ```
 
 On java you cant use new **addSimpleTouchListener()**, you must use the  default **addOnItemTouchListener()**.
-As of that, you must specify in wich recyclerview it should be implemented by calling `listener.setRecyclerView()`.
 
-### Troubleshooting
-Naturally, you need to implement those callback or nothing is done.
-```kotlin
-// this is what you need to a void
-recyclerView.addSimpleTouchListener(SimpleRecyclerViewOnItemTouchListener(context))
-```
+## Troubleshooting
+### No error mark, but it is not working (_Kotlin_)
+Make sure you did call **addSimpleTouchListener()** _after_ setting onClick, onDoubleClick, onLongPress, all of them, or some of them. As it is in example above.
 
-If you using the default **addOnItemTouchListener()**, please, make sure that you specify which recyclerview to implement listener.
-```kotlin
-// this is what you need to a void
-recyclerView.addSimpleTouchListener(SimpleRecyclerViewOnItemTouchListener(context).apply { setRecyclerView(recyclerView) })
-```
 ### "Build or sinchronization failed!"
 Please reference to the part on the start where i talked about support libraries.
 
