@@ -10,7 +10,7 @@
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an "AS IS" BASIS,
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and limitations under the License.
+ *    See the License for the specific la
  */
 
 package io.github.horaciocome1.simplerecyclerviewtouchlistener
@@ -21,16 +21,17 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class SimpleOnItemTouchListener(
-    recyclerView: RecyclerView,
-    onClick: (View, Int) -> Unit,
-    onDoubleClick: (View, Int) -> Unit,
-    onLongPress: (View, Int) -> Unit
+        recyclerView: RecyclerView,
+        listener: (View, Int) -> Unit,
+        type: Int
 ) : RecyclerView.OnItemTouchListener {
 
-    private var gestureListener = GestureListener(recyclerView, onClick, onDoubleClick, onLongPress)
+    private val gestureListener = GestureListener(recyclerView, listener, type)
     private var gestureDetector: GestureDetector
 
-    init { gestureDetector = GestureDetector(recyclerView.context, gestureListener) }
+    init {
+        gestureDetector = GestureDetector(recyclerView.context, gestureListener)
+    }
 
     override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {  }
 

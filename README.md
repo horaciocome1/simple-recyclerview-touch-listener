@@ -1,15 +1,15 @@
 # Simple RecyclerView Touch Listener 
-[![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
+[![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener) . [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 ## Getting Started
 Android library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens when such events occurs.
 Compatible with androidx.
 
-## Pre-requesites
-To be able of testing and implementig this library, the developer should have a working recyclerview list with some data on it.
+## Pre-requisites
+To be able of testing and implementing this library, the developer should have a working recyclerview list with some data on it.
 
 ## Adding to your project
-Lets start by adding a corresponding repository in your _root_ `build.gradle` file. (prefer below all other)
+Lets start by adding a corresponding repository in your _root_ `build.gradle` file.
 ```gradle
 	allprojects {
 		repositories {
@@ -18,83 +18,42 @@ Lets start by adding a corresponding repository in your _root_ `build.gradle` fi
 		}
 	}
  ```
-The next task is to add the dependecy to your _app_ `build.gradle` file.
+The next task is to add the dependency to your _app_ `build.gradle` file.
 ```gradle
 	dependencies {
           ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.7'
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.2.0'
 	}
 ```
-Now you ready to go. Except that you should _**sync your project**_ first.
-
-### Do not use with app compart or support design
-As mention on IO18, android support libraries will not be updated anymore, thats the main reason ive moved to androidx and new material design libraries. That's why if you have any appcompat or design support library as dependency the build will fail. Because the androidx on these app will conflict with android support on your app.
-Dont panic, you can use version 0.1.0 with the old support libraries. But dont espect that to be as much fiendly as these new build.
-```gradle
-	dependencies {
-          ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.1.0'
-	}
-```
-Do not try to implement as follow. The object `SimpleRecyclerViewOnItemTouchListener` is still the same. Just instanciate the class passing necessary arguments. Makeuseof code completion to help you. I am wondering if it is necessary to do a separate lib for suppor appcompat. Email me if you thinking on that.
+Now you ready to go. You might want to _**sync your project**_ first.
 
 ## How to use
 ```kotlin
-recyclerView.apply () {
-    setOnClick { view, position -> /* handle clicks */ }
-    setOnDoubleClick { view, position -> /* handle double clicks */ }
-    setOnLongPress { view, position -> /* handle long presses */ }
-    addSimpleTouchListener()
-}
+    recyclerView.addOnItemClickListener { view, position -> 
+        // handle clicks
+    }
+    
+    recyclerView.addOnItemDoubleClickListener { view, position ->
+        // handle double clicks
+    }
+    
+    recyclerView.addOnItemLongPressListener { view, position -> 
+        // handle long presses
+    }
 ```
 
-Its not mandatory to implement all at once. Pheraphs you just need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
+Its not mandatory to implement all at once. Perhaps you just need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
 ```kotlin
-recyclerView.apply () {
-    setOnLongPress { view, position -> /* handle long presses */ }
-    addSimpleTouchListener()
-}
+    recyclerView.addOnItemLongPressListener { view, position -> 
+        // handle long presses
+    }
 ```
-
-### Java
-```java
-SimpleOnItemTouchListener listener = new SimpleOnItemTouchListener(
-                recyclerView,
-                new Function2<View, Integer, Unit>() {
-                    @Override
-                    public Unit invoke(View view, Integer integer) {
-                        // handle clicks
-                        return null;
-                    }
-                },
-                new Function2<View, Integer, Unit>() {
-                    @Override
-                    public Unit invoke(View view, Integer integer) {
-                        // handle doouble clicks
-                        return null;
-                    }
-                },
-                new Function2<View, Integer, Unit>() {
-                    @Override
-                    public Unit invoke(View view, Integer integer) {
-                        // handle long presses
-                        return null;
-                    }
-                });
-        recyclerView.addOnItemTouchListener(listener);
-```
-
-On java you cant use new **addSimpleTouchListener()**, you must use the  default **addOnItemTouchListener()**.
 
 ## Troubleshooting
-### No error mark, but it is not working (_Kotlin_)
-Make sure you did call **addSimpleTouchListener()** _after_ setting onClick, onDoubleClick, onLongPress, all of them, or some of them. As it is in example above.
-
-### "Build or sinchronization failed!"
-Please reference to the part on the start where i talked about support libraries.
+You might face poor java support.
 
 ## Licenses
-   Copyright 2018 Horácio Flávio Comé Júnior
+   Copyright 2019 Horácio Flávio Comé Júnior
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -113,5 +72,5 @@ I am open to suggestions of any kind.
 Please be expressive, so others so we'all will be able to understand each other!
 
 ## Simple RecyclerView Utils
-This is part of a serie of libraries that pretend to make recyclerview usage more easy.
+This is part of a series of libraries that pretend to make recyclerView usage more easy.
 For a adapter please see [Simple RecyclerView Adapter](https://github.com/horaciocome1/simple-recyclerview-adapter)

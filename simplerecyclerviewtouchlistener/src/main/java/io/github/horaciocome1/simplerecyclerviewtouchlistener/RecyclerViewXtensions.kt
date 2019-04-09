@@ -10,24 +10,25 @@
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an "AS IS" BASIS,
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and limitations under the License.
+ *    See the License for the specific la
  */
 
 package io.github.horaciocome1.simplerecyclerviewtouchlistener
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.DOUBLE_TAP
+import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.LONG_PRESS
+import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.SINGLE_TAP_UP
 
-private var onClick = { _: View, _:Int -> Unit }
-private var onDoubleClick = { _: View, _:Int -> Unit }
-private var onLongPress = { _: View, _:Int -> Unit }
-
-fun RecyclerView.addSimpleTouchListener() {
-    this.addOnItemTouchListener(SimpleOnItemTouchListener(this, onClick, onDoubleClick, onLongPress))
+fun RecyclerView.addOnItemClickListener(listener: (View, Int) -> Unit) {
+    addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, SINGLE_TAP_UP))
 }
 
-fun RecyclerView.setOnClick(callback: (View, Int) -> Unit) { onClick = callback }
+fun RecyclerView.addOnItemDoubleClickListener(listener: (View, Int) -> Unit) {
+    addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, DOUBLE_TAP))
+}
 
-fun RecyclerView.setOnDoubleClick(callback: (View, Int) -> Unit) { onDoubleClick = callback }
-
-fun RecyclerView.setOnLongPress(callback: (View, Int) -> Unit) { onLongPress = callback }
+fun RecyclerView.addOnItemLongPressListener(listener: (View, Int) -> Unit) {
+    addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, LONG_PRESS))
+}

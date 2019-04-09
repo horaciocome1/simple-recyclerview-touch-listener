@@ -19,34 +19,30 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.DOUBLE_TAP
+import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.LONG_PRESS
+import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.SINGLE_TAP_UP
 
 class GestureListener(
-    private val recyclerView: RecyclerView,
-    private val onClick: (View, Int) -> Unit,
-    private val onDoubleClick: (View, Int) -> Unit,
-    private val onLongPress: (View, Int) -> Unit
+        private val recyclerView: RecyclerView,
+        private val listener: (View, Int) -> Unit,
+        private val type: Int
 ) : GestureDetector.SimpleOnGestureListener() {
 
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        e?.run {
-            val view = recyclerView.findChildViewUnder(x, y)
-            if (view != null) onClick(view, recyclerView.getChildAdapterPosition(view))
-        }
-        return true
-    }
+    override fun onSingleTapUp(e: MotionEvent?) = e?.getChild(SINGLE_TAP_UP) ?: true
 
-    override fun onDoubleTap(e: MotionEvent?): Boolean {
-        e?.run {
-            val view = recyclerView.findChildViewUnder(x, y)
-            if (view != null) onDoubleClick(view, recyclerView.getChildAdapterPosition(view))
-        }
-        return true
-    }
+    override fun onDoubleTap(e: MotionEvent?) = e?.getChild(DOUBLE_TAP) ?: true
 
     override fun onLongPress(e: MotionEvent?) {
-        e?.run {
-            val view = recyclerView.findChildViewUnder(x, y)
-            if (view != null) onLongPress(view, recyclerView.getChildAdapterPosition(view))
-        }
+        e?.getChild(LONG_PRESS)
     }
+
+    private fun MotionEvent.getChild(t: Int): Boolean {
+        recyclerView.findChildViewUnder(x, y)?.let {
+            if (type == t)
+                listener(it, recyclerView.getChildAdapterPosition(it))
+        }
+        return true
+    }
+
 }
