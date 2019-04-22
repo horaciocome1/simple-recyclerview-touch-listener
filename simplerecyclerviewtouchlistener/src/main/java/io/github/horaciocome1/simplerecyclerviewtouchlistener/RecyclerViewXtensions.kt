@@ -21,14 +21,28 @@ import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView
 import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.LONG_PRESS
 import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.SINGLE_TAP_UP
 
+private var hasOnClickListener = false
+private var hasOnDoubleClickListener = false
+private var hasOnLongPressListener = false
+
+
 fun RecyclerView.addOnItemClickListener(listener: (View, Int) -> Unit) {
-    addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, SINGLE_TAP_UP))
+    if (!hasOnClickListener) {
+        addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, SINGLE_TAP_UP))
+        hasOnClickListener = true
+    }
 }
 
 fun RecyclerView.addOnItemDoubleClickListener(listener: (View, Int) -> Unit) {
-    addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, DOUBLE_TAP))
+    if (!hasOnDoubleClickListener) {
+        addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, DOUBLE_TAP))
+        hasOnDoubleClickListener = true
+    }
 }
 
 fun RecyclerView.addOnItemLongPressListener(listener: (View, Int) -> Unit) {
-    addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, LONG_PRESS))
+    if (!hasOnLongPressListener) {
+        addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, LONG_PRESS))
+        hasOnLongPressListener = true
+    }
 }
