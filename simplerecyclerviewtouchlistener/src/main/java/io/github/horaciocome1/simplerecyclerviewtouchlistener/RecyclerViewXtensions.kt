@@ -21,28 +21,31 @@ import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView
 import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.LONG_PRESS
 import io.github.horaciocome1.simplerecyclerviewtouchlistener.SimpleRecyclerView.SINGLE_TAP_UP
 
-private var hasOnClickListener = false
-private var hasOnDoubleClickListener = false
-private var hasOnLongPressListener = false
+private var onClickListener: SimpleOnItemTouchListener? = null
+private var onDoubleClickListener: SimpleOnItemTouchListener? = null
+private var onnLongPressListener: SimpleOnItemTouchListener? = null
 
 
 fun RecyclerView.addOnItemClickListener(listener: (View, Int) -> Unit) {
-    if (!hasOnClickListener) {
-        addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, SINGLE_TAP_UP))
-        hasOnClickListener = true
+    onClickListener?.let {
+        removeOnItemTouchListener(it)
     }
+    onClickListener = SimpleOnItemTouchListener(this, listener, SINGLE_TAP_UP)
+    addOnItemTouchListener(onClickListener!!)
 }
 
 fun RecyclerView.addOnItemDoubleClickListener(listener: (View, Int) -> Unit) {
-    if (!hasOnDoubleClickListener) {
-        addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, DOUBLE_TAP))
-        hasOnDoubleClickListener = true
+    onDoubleClickListener?.let {
+        removeOnItemTouchListener(it)
     }
+    onDoubleClickListener = SimpleOnItemTouchListener(this, listener, DOUBLE_TAP)
+    addOnItemTouchListener(onDoubleClickListener!!)
 }
 
 fun RecyclerView.addOnItemLongPressListener(listener: (View, Int) -> Unit) {
-    if (!hasOnLongPressListener) {
-        addOnItemTouchListener(SimpleOnItemTouchListener(this, listener, LONG_PRESS))
-        hasOnLongPressListener = true
+    onnLongPressListener?.let {
+        removeOnItemTouchListener(it)
     }
+    onnLongPressListener = SimpleOnItemTouchListener(this, listener, LONG_PRESS)
+    addOnItemTouchListener(onnLongPressListener!!)
 }
