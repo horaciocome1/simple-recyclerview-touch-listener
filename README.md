@@ -22,7 +22,7 @@ The next task is to add the dependency to your _app_ `build.gradle` file.
 ```gradle
 	dependencies {
           ...
-	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.2.0'
+	        implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.2.1'
 	}
 ```
 Now you ready to go. You might want to _**sync your project**_ first.
