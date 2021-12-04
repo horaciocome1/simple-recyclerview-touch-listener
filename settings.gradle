@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "recyclerviewxtensions"
 include ':app'
+include ':recyclerviewxtensions'
