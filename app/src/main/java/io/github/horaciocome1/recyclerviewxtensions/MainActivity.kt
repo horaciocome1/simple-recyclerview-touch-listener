@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.horaciocome1.extensions.extensions.addGestureDetection
+import io.github.horaciocome1.extensions.extensions.doubleClick
+import io.github.horaciocome1.extensions.extensions.longClick
+import io.github.horaciocome1.extensions.extensions.singleClick
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,12 +28,32 @@ class MainActivity : AppCompatActivity() {
         val cities = listOf("Maputo", "Beira", "Chimoio", "Maxixe", "Nacala", "Niassa")
         recyclerView.adapter = MyAdapter(cities)
 
+        // simple example
         recyclerView.addGestureDetection {
             Log.d(TAG, "addGestureDetection isSingleClick=$isSingleClick")
             Log.d(TAG, "addGestureDetection isDoubleClick=$isDoubleClick")
             Log.d(TAG, "addGestureDetection isLongClick=$isLongPress")
             Log.d(TAG, "addGestureDetection view=$view")
             Log.d(TAG, "addGestureDetection position=$position")
+        }
+    }
+
+    fun samples(recyclerView: RecyclerView) {
+        recyclerView.addGestureDetection {
+            Log.d(TAG, "gesture detected")
+            singleClick {
+                Log.d(TAG, "gesture is single click")
+                Log.d(TAG, "view=$view")
+                Log.d(TAG, "position=$position")
+            }
+        }
+
+        recyclerView.addGestureDetection {
+            doubleClick { }
+        }
+
+        recyclerView.addGestureDetection {
+            longClick { }
         }
     }
 
