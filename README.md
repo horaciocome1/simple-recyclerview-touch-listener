@@ -4,6 +4,7 @@
 ## Getting Started
 Android library that abstracts, and completely hide, the GestureDetector part of an recyclerview click, and press, events implementation. Leaving to the developer only the task of implementing what happens when such events occurs.
 Compatible with androidx.
+[See legacy code here](https://github.com/horaciocome1/simple-recyclerview-touch-listener/tree/version-2.2.0)
 
 ## Pre-requisites
 To be able of testing and implementing this library, the developer should have a working recyclerview list with some data on it. Please refer to the sample app.
@@ -13,43 +14,23 @@ Lets start by adding a corresponding repository in your _root_ `build.gradle` fi
 ```gradle
 allprojects {
     repositories {
-        ...
+        ..
         maven { url 'https://jitpack.io' }
     }
 }
  ```
-The next task is to add the dependency to your _app_ `build.gradle` file.
+The next task is to add the dependency to your _app_ `build.gradle` file.<br>
+[![](https://jitpack.io/v/horaciocome1/simple-recyclerview-touch-listener.svg)](https://jitpack.io/#horaciocome1/simple-recyclerview-touch-listener)
 ```gradle
 dependencies {
-        ...
+    ..
     implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener$VERSION'
 }
 ```
 Now you ready to go. You may want to _**sync your project**_ first.
 
-## How to use (before 0.3.0 release)
-```kotlin
-recyclerView.addOnItemClickListener { view, position -> 
-    // handle clicks
-}
-
-recyclerView.addOnItemDoubleClickListener { view, position ->
-    // handle double clicks
-}
-
-recyclerView.addOnItemLongPressListener { view, position -> 
-    // handle long presses
-}
-```
-
-Its not mandatory to implement all at once. Perhaps you just need to handle long presses. In that case you should only implement `setOnItemLongPressListener( ... )`.
-```kotlin
-recyclerView.addOnItemLongPressListener { view, position -> 
-    // handle long presses
-}
-```
-
 ## How to use (0.3.0 onwards)
+[See legacy code here](https://github.com/horaciocome1/simple-recyclerview-touch-listener/tree/version-2.2.0)<br>
 Inside the block, use `isSingleClick`, `isDoubleClick`, and `isLongClick` to filter your event. Then use `view` and `position` to find the itemView and the itemPosition respectively.
 ```kotlin
 recyclerView.addGestureDetection {
@@ -74,21 +55,21 @@ recyclerView.addGestureDetection {
 ```kotlin
 recyclerView.addGestureDetection {
     doubleClick {
-        ...
+        ..
     }
 }
 ```
 ```kotlin
 recyclerView.addGestureDetection {
     longPress {
-        ...
+        ..
     }
 }
 ```
 
 ## Troubleshooting
 You might face poor java support.
-Rollback to `0.2.0` [here](https://github.com/horaciocome1/simple-recyclerview-touch-listener/tree/version-0.2.3).
+Would like to rollback to `0.2.0`? [See legacy code here](https://github.com/horaciocome1/simple-recyclerview-touch-listener/tree/version-2.2.0)
 
 ## Licenses
 Copyright 2019 Horácio Flávio Comé Júnior
