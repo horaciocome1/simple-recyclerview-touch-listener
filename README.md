@@ -68,8 +68,8 @@ recyclerView.addGestureDetection {
 ```
 
 ## Troubleshooting
-You might face poor java support.
-Would like to rollback to `0.2.0`? [See legacy code here](https://github.com/horaciocome1/simple-recyclerview-touch-listener/tree/version-2.2.0)
+1. You might face poor java support.
+2. Would like to rollback to `0.2.0`? [See legacy code here](https://github.com/horaciocome1/simple-recyclerview-touch-listener/tree/version-2.2.0)
 
 ## Licenses
 Copyright 2019 Horácio Flávio Comé Júnior
