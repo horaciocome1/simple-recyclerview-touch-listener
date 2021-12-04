@@ -37,7 +37,7 @@ inline fun GestureOperation.doubleClick(block: GestureOperationLite.() -> Unit) 
 /**
  * Block is only called in case the gesture is of type long press
  */
-inline fun GestureOperation.longClick(block: GestureOperationLite.() -> Unit) {
+inline fun GestureOperation.longPress(block: GestureOperationLite.() -> Unit) {
     if (isLongPress) {
         lite.block()
     }

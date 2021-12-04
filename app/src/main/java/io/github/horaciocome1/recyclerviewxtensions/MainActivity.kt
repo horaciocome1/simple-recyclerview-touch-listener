@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.horaciocome1.extensions.extensions.addGestureDetection
 import io.github.horaciocome1.extensions.extensions.doubleClick
-import io.github.horaciocome1.extensions.extensions.longClick
+import io.github.horaciocome1.extensions.extensions.longPress
 import io.github.horaciocome1.extensions.extensions.singleClick
 
 class MainActivity : AppCompatActivity() {
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         recyclerView.addGestureDetection {
-            longClick { }
+            longPress { }
         }
     }
 

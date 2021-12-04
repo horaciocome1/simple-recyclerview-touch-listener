@@ -55,7 +55,7 @@ Inside the block, use `isSingleClick`, `isDoubleClick`, and `isLongClick` to fil
 recyclerView.addGestureDetection {
     Log.d(TAG, "addGestureDetection isSingleClick=$isSingleClick")
     Log.d(TAG, "addGestureDetection isDoubleClick=$isDoubleClick")
-    Log.d(TAG, "addGestureDetection isLongClick=$isLongPress")
+    Log.d(TAG, "addGestureDetection isLongPress=$isLongPress")
     Log.d(TAG, "addGestureDetection view=$view")
     Log.d(TAG, "addGestureDetection position=$position")
 }
@@ -80,7 +80,7 @@ recyclerView.addGestureDetection {
 ```
 ```kotlin
 recyclerView.addGestureDetection {
-    longClick {
+    longPress {
         ...
     }
 }
