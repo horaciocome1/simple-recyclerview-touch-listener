@@ -10,3 +10,35 @@
 
 package io.github.horaciocome1.extensions.extensions
 
+import io.github.horaciocome1.extensions.touch.GestureOperation
+import io.github.horaciocome1.extensions.touch.GestureOperationLite
+
+val GestureOperation.lite
+    get() = GestureOperationLite(view, position)
+
+/**
+ * Block is only called in case the gesture is of type single click
+ */
+inline fun GestureOperation.singleClick(block: GestureOperationLite.() -> Unit) {
+    if (isSingleClick) {
+        lite.block()
+    }
+}
+
+/**
+ * Block is only called in case the gesture is of type double click
+ */
+inline fun GestureOperation.doubleClick(block: GestureOperationLite.() -> Unit) {
+    if (isDoubleClick) {
+        lite.block()
+    }
+}
+
+/**
+ * Block is only called in case the gesture is of type long press
+ */
+inline fun GestureOperation.longClick(block: GestureOperationLite.() -> Unit) {
+    if (isLongPress) {
+        lite.block()
+    }
+}
