@@ -22,7 +22,7 @@ The next task is to add the dependency to your _app_ `build.gradle` file.
 ```gradle
 dependencies {
         ...
-    implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener:0.2.2'
+    implementation 'com.github.horaciocome1:simple-recyclerview-touch-listener$VERSION'
 }
 ```
 Now you ready to go. You may want to _**sync your project**_ first.
@@ -88,6 +88,7 @@ recyclerView.addGestureDetection {
 
 ## Troubleshooting
 You might face poor java support.
+Rollback to `0.2.0` here.
 
 ## Licenses
 Copyright 2019 Horácio Flávio Comé Júnior
