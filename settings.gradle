@@ -1,1 +1,9 @@
-include ':app', ':simplerecyclerviewtouchlistener'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "recyclerviewxtensions"
+include ':app'
