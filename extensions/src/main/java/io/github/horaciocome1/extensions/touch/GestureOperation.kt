@@ -8,24 +8,14 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-package io.github.horaciocome1.extensions
+package io.github.horaciocome1.extensions.touch
 
-import androidx.recyclerview.widget.RecyclerView
+import android.view.View
 
-/**
- * Never call this in onStart or onResume
- * Abstracts the whole ItemTouchListener implementation and exposes only the
- * GestureOperation that occurred<br>
- */
-fun RecyclerView.addGestureDetection(block: GestureOperation.() -> Unit) {
-    val touchListener = TouchListener(
-        this,
-        object : OnGesture {
-
-            override fun onGesture(operation: GestureOperation) {
-                operation.block()
-            }
-        }
-    )
-    addOnItemTouchListener(touchListener)
-}
+data class GestureOperation(
+    val view: View,
+    val position: Int,
+    val isSingleClick: Boolean = false,
+    val isDoubleClick: Boolean = false,
+    val isLongPress: Boolean = false,
+)

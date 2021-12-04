@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.github.horaciocome1.extensions.addGestureDetection
+import io.github.horaciocome1.extensions.extensions.addGestureDetection
 
 class MainActivity : AppCompatActivity() {
 

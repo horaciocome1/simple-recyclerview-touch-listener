@@ -8,14 +8,5 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-package io.github.horaciocome1.extensions
+package io.github.horaciocome1.extensions.extensions
 
-import android.view.View
-
-data class GestureOperation(
-    val view: View,
-    val position: Int,
-    val isSingleClick: Boolean = false,
-    val isDoubleClick: Boolean = false,
-    val isLongPress: Boolean = false,
-)
