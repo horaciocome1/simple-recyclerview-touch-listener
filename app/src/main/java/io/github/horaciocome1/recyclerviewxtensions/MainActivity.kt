@@ -1,6 +1,7 @@
 package io.github.horaciocome1.recyclerviewxtensions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.github.horaciocome1.extensions.addGestureDetection
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG = "MainActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +24,14 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         val cities = listOf("Maputo", "Beira", "Chimoio", "Maxixe", "Nacala", "Niassa")
         recyclerView.adapter = MyAdapter(cities)
+
+        recyclerView.addGestureDetection {
+            Log.d(TAG, "addGestureDetection isSingleClick=$isSingleClick")
+            Log.d(TAG, "addGestureDetection isDoubleClick=$isDoubleClick")
+            Log.d(TAG, "addGestureDetection isLongClick=$isLongPress")
+            Log.d(TAG, "addGestureDetection view=$view")
+            Log.d(TAG, "addGestureDetection position=$position")
+        }
     }
 
     class MyAdapter(private val cities: List<String>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
