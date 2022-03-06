@@ -1,7 +1,7 @@
 <component name="CopyrightManager">
-  <settings>
+  <settings default="Apache 2.0">
     <module2copyright>
-      <element module="All" copyright="Horácio Flávio Comé Júnior" />
+      <element module="All" copyright="Apache 2.0" />
     </module2copyright>
   </settings>
 </component>
