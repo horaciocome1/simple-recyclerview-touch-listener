@@ -26,7 +26,9 @@ class GestureListener(
         } ?: false
 
     override fun onLongPress(e: MotionEvent?) {
-        e?.onEvent { view, position -> GestureOperation(view, position, isLongPress = true) }
+        e?.onEvent { view, position ->
+            GestureOperation(view, position, isLongPress = true)
+        }
     }
 
     override fun onDoubleTap(e: MotionEvent?) =
